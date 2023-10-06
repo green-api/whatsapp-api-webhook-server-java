@@ -33,7 +33,7 @@
         </developer>
     </developers>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <whatsapp-api-client-java.version>0.0.4</whatsapp-api-client-java.version>
     </properties>
     <distributionManagement>
