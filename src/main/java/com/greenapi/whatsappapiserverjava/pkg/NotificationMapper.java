@@ -21,10 +21,10 @@ public class NotificationMapper {
         var notification = objectMapper.readTree(responseBody);
 
         if (notification.has("body") && notification.has("receiptId")) {
-            notificationTypeHandle(notification, notification.get("receiptId").asInt());
+            return notificationTypeHandle(notification, notification.get("receiptId").asInt());
 
-        } else if ((notification.has("body"))) {
-            notificationTypeHandle(notification, null);
+        } else if (notification.has("body")) {
+            return notificationTypeHandle(notification, null);
 
         } else {
             log.error("Webhook doesn't have a body and receiptId fields");
