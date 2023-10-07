@@ -25,9 +25,6 @@ public class NotificationMapper {
 
         } else if (notification.has("typeWebhook")) {
             return notificationTypeHandle(notification, null);
-
-        } else {
-            log.error("Webhook doesn't have a body and receiptId fields");
         }
 
         log.error("Webhook unknown type " + responseBody);
