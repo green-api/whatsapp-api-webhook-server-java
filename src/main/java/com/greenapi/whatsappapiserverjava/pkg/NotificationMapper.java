@@ -21,9 +21,9 @@ public class NotificationMapper {
         var notification = objectMapper.readTree(responseBody);
 
         if (notification.has("body") && notification.has("receiptId")) {
-            return notificationTypeHandle(notification, notification.get("receiptId").asInt());
+            return notificationTypeHandle(notification.get("body"), notification.get("receiptId").asInt());
 
-        } else if (notification.has("body")) {
+        } else if (notification.has("typeWebhook")) {
             return notificationTypeHandle(notification, null);
 
         } else {
@@ -34,11 +34,9 @@ public class NotificationMapper {
         return null;
     }
 
-    private Notification notificationTypeHandle(JsonNode notification, Integer receiptId) throws JsonProcessingException {
+    private Notification notificationTypeHandle(JsonNode notificationBody, Integer receiptId) throws JsonProcessingException {
 
-        var notificationBody = notification.get("body");
-
-        switch (notification.get("body").get("typeWebhook").asText()) {
+        switch (notificationBody.get("typeWebhook").asText()) {
             case "incomingMessageReceived", "outgoingMessageReceived", "outgoingAPIMessageReceived" -> {
                 return messageTypeHandle(notificationBody, receiptId);
             }
