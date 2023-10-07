@@ -19,10 +19,9 @@ public class NotificationMapper {
     @SneakyThrows
     public Notification get(String responseBody) {
         var notification = objectMapper.readTree(responseBody);
-        var receiptId = notification.get("receiptId").asInt();
 
         if (notification.has("body") && notification.has("receiptId")) {
-            notificationTypeHandle(notification, receiptId);
+            notificationTypeHandle(notification, notification.get("receiptId").asInt());
 
         } else if ((notification.has("body"))) {
             notificationTypeHandle(notification, null);
