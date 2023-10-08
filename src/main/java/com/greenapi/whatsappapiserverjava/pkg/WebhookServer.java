@@ -23,10 +23,10 @@ public class WebhookServer {
     @PostMapping("/webhook")
     @ResponseStatus(HttpStatus.OK)
     public void receiveWebhook(@RequestBody String jsonString,
-                               @RequestHeader(required = false) String authorization) {
+                               @RequestHeader(required = false) String Authorization) {
 
-        if (authorization.isEmpty() ||
-            authorization.replaceAll("Bearer ", "").equals(webhookToken)) {
+        if (Authorization.isEmpty() ||
+            Authorization.replaceAll("Bearer ", "").equals(webhookToken)) {
 
             greenapiWebhookHandler.handle(notificationMapper.get(jsonString));
         } else {
