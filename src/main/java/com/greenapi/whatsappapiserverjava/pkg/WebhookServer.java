@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,6 +23,7 @@ public class WebhookServer {
 
     @PostMapping("/webhook")
     @ResponseStatus(HttpStatus.OK)
+    @Async
     public void receiveWebhook(@RequestBody String jsonString,
                                @RequestHeader(required = false) String Authorization) {
         if (Authorization != null &&
