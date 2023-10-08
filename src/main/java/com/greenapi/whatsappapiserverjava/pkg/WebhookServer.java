@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class WebhookServer {
 
     private final NotificationMapper notificationMapper = new NotificationMapper(new ObjectMapper());
-    private final WebhookHandler greenapiWebhookHandler = System.out::println;
+    private final WebhookHandler greenapiWebhookHandler = new DelayFunction();
     @Value("${green-api.webhookToken}")
     private String webhookToken;
 
