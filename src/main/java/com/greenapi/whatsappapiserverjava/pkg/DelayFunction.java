@@ -8,10 +8,8 @@ public class DelayFunction implements WebhookHandler {
     @SneakyThrows
     @Override
     public void handle(Notification notification) {
-        System.out.println("start " + notification);
-
+        System.out.println("START " + notification);
         Thread.sleep(20000);
-
-        System.out.println("end" + notification);
+        System.out.println("END " + notification);
     }
 }
