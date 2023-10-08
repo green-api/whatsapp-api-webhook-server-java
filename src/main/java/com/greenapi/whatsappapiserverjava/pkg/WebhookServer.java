@@ -23,7 +23,7 @@ public class WebhookServer {
     @PostMapping("/webhook")
     @ResponseStatus(HttpStatus.OK)
     public void receiveWebhook(@RequestBody String jsonString,
-                               @RequestHeader String authorization) {
+                               @RequestHeader(required = false) String authorization) {
 
         if (authorization.isEmpty() ||
             authorization.replaceAll("Bearer ", "").equals(webhookToken)) {
