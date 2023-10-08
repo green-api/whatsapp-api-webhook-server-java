@@ -24,13 +24,13 @@ public class WebhookServer {
     @ResponseStatus(HttpStatus.OK)
     public void receiveWebhook(@RequestBody String jsonString,
                                @RequestHeader String authorization) {
-        var token = authorization.replaceAll("Bearer ", "");
 
-        if (!token.equals(webhookToken)) {
-            log.info("request with invalid webhookToken");
+        if (authorization.isEmpty() ||
+            authorization.replaceAll("Bearer ", "").equals(webhookToken)) {
 
-        } else {
             greenapiWebhookHandler.handle(notificationMapper.get(jsonString));
+        } else {
+            log.info("request with invalid webhookToken");
         }
     }
 }
