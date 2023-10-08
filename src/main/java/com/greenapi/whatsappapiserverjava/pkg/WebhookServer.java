@@ -25,7 +25,7 @@ public class WebhookServer {
     public void receiveWebhook(@RequestBody String jsonString,
                                @RequestHeader(required = false) String Authorization) {
 
-        if (Authorization == null ||
+        if (webhookToken == null ||
             Authorization.replaceAll("Bearer ", "").equals(webhookToken)) {
 
             greenapiWebhookHandler.handle(notificationMapper.get(jsonString));
