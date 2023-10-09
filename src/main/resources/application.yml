@@ -1,4 +1,2 @@
 greenapi:
   webhookToken:
-server:
-  port: 80
