@@ -19,12 +19,12 @@ public class WebhookServer {
 
     private final NotificationMapper notificationMapper = new NotificationMapper(new ObjectMapper());
     private final WebhookHandler whatsappWebhookHandler;
-    @Value("${green-api.webhookToken}")
+    @Value("${greenapi.webhookToken}")
     private String webhookToken;
 
-    @PostMapping("/webhook")
+    @PostMapping("/async/webhook")
     @ResponseStatus(HttpStatus.OK)
-    public void receiveWebhook(@RequestBody String jsonString,
+    public void receiveAsyncWebhook(@RequestBody String jsonString,
                                @RequestHeader(required = false) String Authorization) {
         if (Authorization != null &&
             !Authorization.replaceAll("Bearer ", "").equals(webhookToken)) {
