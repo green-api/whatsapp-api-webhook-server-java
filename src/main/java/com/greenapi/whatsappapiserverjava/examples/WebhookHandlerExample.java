@@ -1,10 +1,12 @@
-package com.greenapi.whatsappapiserverjava.pkg;
+package com.greenapi.whatsappapiserverjava.examples;
 
 import com.greenapi.pkg.api.webhook.WebhookHandler;
 import com.greenapi.pkg.models.notifications.Notification;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
-public class DelayFunction implements WebhookHandler {
+@Component(value = "whatsappWebhookHandler")
+public class WebhookHandlerExample implements WebhookHandler {
     @SneakyThrows
     @Override
     public void handle(Notification notification) {

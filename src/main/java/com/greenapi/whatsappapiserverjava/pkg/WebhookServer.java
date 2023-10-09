@@ -18,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 public class WebhookServer {
 
     private final NotificationMapper notificationMapper = new NotificationMapper(new ObjectMapper());
-    private final WebhookHandler greenapiWebhookHandler = new DelayFunction();
+    private final WebhookHandler whatsappWebhookHandler;
     @Value("${green-api.webhookToken}")
     private String webhookToken;
 
@@ -32,7 +32,7 @@ public class WebhookServer {
 
         } else {
             CompletableFuture.runAsync(() -> {
-                greenapiWebhookHandler.handle(notificationMapper.get(jsonString));
+                whatsappWebhookHandler.handle(notificationMapper.get(jsonString));
             });
         }
     }
