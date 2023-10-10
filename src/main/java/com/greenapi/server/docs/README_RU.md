@@ -147,4 +147,4 @@ java -jar ваше_приложение.jar
 
 Лицензировано на условиях [
 Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)
-](https://creativecommons.org/licenses/by-nd/4.0/). [LICENSE](/LICENSE.txt).
+](https://creativecommons.org/licenses/by-nd/4.0/). [LICENSE](LICENSE.txt).

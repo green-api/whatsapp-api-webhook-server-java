@@ -91,7 +91,7 @@ server:
 Applications will start listening the port immediately after running the `main` method; 
 for this, do not forget to add the `@ComponentScan(basePackages = "com.greenapi.server")` annotation.
 
-Link to example: [WhatsappApiServerExample.java](/com/greenapi/server/examples/WhatsappApiServerExample.java).
+Link to example: [WhatsappApiServerExample.java](src/main/java/com/greenapi/server/examples/WhatsappApiServerExample.java).
 
 ```java
 @SpringBootApplication
@@ -106,7 +106,7 @@ public class WhatsappApiServerExample {
 The handler function class must implement the `WebhookHandler` interface and be a bean.
 To do this, set the `@Component(value = "whatsappWebhookHandler")` annotation on the handler function class.
 
-Link to example: [WebhookHandlerExample.java](/com/greenapi/server/examples/WebhookHandlerExample.java).
+Link to example: [WebhookHandlerExample.java](src/main/java/com/greenapi/server/examples/WebhookHandlerExample.java).
 
 ```java
 @Component(value = "whatsappWebhookHandler")
