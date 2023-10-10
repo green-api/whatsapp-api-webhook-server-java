@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenapi.pkg.api.webhook.NotificationMapper;
 import com.greenapi.pkg.api.webhook.WebhookHandler;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 @RequestMapping("/green-api")
 @RequiredArgsConstructor
-@Slf4j
+@Log4j2
 public class WebhookServer {
 
     private final NotificationMapper notificationMapper = new NotificationMapper(new ObjectMapper());
