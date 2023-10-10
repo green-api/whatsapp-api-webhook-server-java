@@ -69,34 +69,48 @@ sudo ufw enable
 ### Импорт
 
 ```
-import (
-	"github.com/green-api/whatsapp-api-webhook-server-golang/pkg"
-)
+
 ```
 
 ### Примеры
 
 #### Как инициализировать объект
 
+Установите параметры сервера в `application.yml`.
 Атрибут WebhookToken является опциональным.
 
 ```yaml
 green-api:
   webhookToken: 1a2b3c4d5e
 server:
-  port: 80
+  port: 8080
 ```
 
 #### Как запустить веб-сервер
 
-Функция StartServer принимает функцию-обработчик. Класс функции-обработчика должен имплементировать интерфейс `WebhookHandler` и быть бином.
+Приложения начнет слушать порт, сразу после запуска метода `main`, для этого не забудьте поставить аннотацию `@ComponentScan(basePackages = "com.greenapi.server")`.
+
+Ссылка на пример: [WhatsappApiServerExample.java](/com/greenapi/server/examples/WhatsappApiServerExample.java).
+
+```java
+@SpringBootApplication
+@ComponentScan(basePackages = "com.greenapi.server")
+public class WhatsappApiServerExample {
+    public static void main(String[] args) {
+        SpringApplication.run(WhatsappApiServerExample.class, args);
+    }
+}
+```
+
+Класс функции-обработчика должен имплементировать интерфейс `WebhookHandler` и быть бином.
 Для этого установите аннотацию `@Component(value = "whatsappWebhookHandler")` над классом функции-обработчика.
 
-Ссылка на пример: [WebhookHandlerExample.java](/src/main/java/com/greenapi/whatsappapiserverjava/examples/WebhookHandlerExample.java).
+Ссылка на пример: [WebhookHandlerExample.java](/com/greenapi/server/examples/WebhookHandlerExample.java).
 
 ```java
 @Component(value = "whatsappWebhookHandler")
 public class WebhookHandlerExample implements WebhookHandler {
+    
     @SneakyThrows
     @Override
     public void handle(Notification notification) {
@@ -107,20 +121,22 @@ public class WebhookHandlerExample implements WebhookHandler {
 }
 ```
 
-При получении нового уведомления ваша функция-обработчик будет выполнена асинхронно.
-
-Ссылка на пример: [WhatsappApiServerExample.java](/src/main/java/com/greenapi/whatsappapiserverjava/examples/WhatsappApiServerExample.java).
-
-```
-_ := webhook.StartServer(func(body map[string]interface{}) {
-    fmt.Println(body)
-})
-```
+При получении нового уведомления ваша функция-обработчик `handle()` будет выполнена асинхронно.
+Мы рекомендуем обрабатывать уведомления асинхронно, так как они настроены на таймаут, при долгом получении статус кода 200. 
+После таймаута вторая попытка происходит не сразу, что может послужить причиной долгой обработки уведомлений и увеличения очереди сообщений.
 
 ### Запуск приложения
 
+Для JAR-файла:
+
 ```shell
-go run main.go
+java -jar ваше_приложение.jar
+```
+
+Если используется Maven запустите из директории проекта:
+
+```shell
+./mvnw spring-boot:run
 ```
 
 ## Документация по методам сервиса
@@ -131,4 +147,4 @@ go run main.go
 
 Лицензировано на условиях [
 Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)
-](https://creativecommons.org/licenses/by-nd/4.0/). [LICENSE](../LICENSE).
+](https://creativecommons.org/licenses/by-nd/4.0/). [LICENSE](/LICENSE.txt).

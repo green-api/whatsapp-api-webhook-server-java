@@ -1,4 +1,4 @@
-package com.greenapi.whatsappapiserverjava.pkg;
+package com.greenapi.server.pkg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenapi.pkg.api.webhook.NotificationMapper;
@@ -19,7 +19,7 @@ public class WebhookServer {
 
     private final NotificationMapper notificationMapper = new NotificationMapper(new ObjectMapper());
     private final WebhookHandler whatsappWebhookHandler;
-    @Value("${greenapi.webhookToken}")
+    @Value("${green-api.webhookToken}")
     private String webhookToken;
 
     @PostMapping("/async/webhook")
