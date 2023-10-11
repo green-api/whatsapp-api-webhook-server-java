@@ -1,8 +1,8 @@
 package com.greenapi.server.pkg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.greenapi.pkg.api.webhook.NotificationMapper;
-import com.greenapi.pkg.api.webhook.WebhookHandler;
+import com.greenapi.client.pkg.api.webhook.NotificationMapper;
+import com.greenapi.client.pkg.api.webhook.WebhookHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;

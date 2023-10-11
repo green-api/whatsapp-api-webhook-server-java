@@ -68,8 +68,12 @@ sudo ufw enable
 
 ### Импорт
 
-```
-
+```xml
+<dependency>
+  <groupId>com.green-api</groupId>
+  <artifactId>whatsapp-api-webhook-server-java</artifactId>
+  <version>{{version}}</version>
+</dependency>
 ```
 
 ### Примеры
@@ -147,4 +151,4 @@ java -jar ваше_приложение.jar
 
 Лицензировано на условиях [
 Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)
-](https://creativecommons.org/licenses/by-nd/4.0/). [LICENSE](LICENSE.txt).
+](https://creativecommons.org/licenses/by-nd/4.0/). [LICENSE](https://github.com/green-api/whatsapp-api-webhook-server-java/blob/master/LICENSE.txt).

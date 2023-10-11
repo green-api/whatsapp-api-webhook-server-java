@@ -1,7 +1,7 @@
 package com.greenapi.server.examples;
 
-import com.greenapi.pkg.api.webhook.WebhookHandler;
-import com.greenapi.pkg.models.notifications.Notification;
+import com.greenapi.client.pkg.api.webhook.WebhookHandler;
+import com.greenapi.client.pkg.models.notifications.Notification;
 import lombok.SneakyThrows;
 
 //@Component(value = "whatsappWebhookHandler")

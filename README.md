@@ -69,7 +69,12 @@ sudo ufw enable
 
 ### Import
 
-```
+```xml
+<dependency>
+  <groupId>com.green-api</groupId>
+  <artifactId>whatsapp-api-webhook-server-java</artifactId>
+  <version>{{version}}</version>
+</dependency>
 ```
 
 ### Examples
