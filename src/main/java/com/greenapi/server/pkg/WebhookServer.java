@@ -1,6 +1,7 @@
 package com.greenapi.server.pkg;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.greenapi.client.pkg.api.exceptions.GreenApiClientException;
 import com.greenapi.client.pkg.api.webhook.NotificationMapper;
 import com.greenapi.client.pkg.api.webhook.WebhookHandler;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class WebhookServer {
                                @RequestHeader(required = false) String Authorization) {
         if (Authorization != null &&
             !Authorization.replaceAll("Bearer ", "").equals(webhookToken)) {
-            log.info("request with invalid webhookToken");
+            throw new GreenApiClientException("Invalid webhookToken - request is ignored");
 
         } else {
             CompletableFuture.runAsync(() -> {
