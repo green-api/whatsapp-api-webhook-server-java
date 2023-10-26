@@ -82,11 +82,12 @@ sudo ufw enable
 #### How to initialize an object
 
 Set server options in `application.yml`.
-The WebhookToken attribute is optional.
+The WebhookToken attribute is optional and does not need to be assigned a value, but it must be in `application.yml`.
+If you don't want to set a password, you can simply leave the webhookToken parameter without a value.
 
 ```yaml
 green-api:
-  webhookToken: 1a2b3c4d5e
+  webhookToken:
 server:
   port: 8080
 ```

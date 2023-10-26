@@ -81,11 +81,12 @@ sudo ufw enable
 #### Как инициализировать объект
 
 Установите параметры сервера в `application.yml`.
-Атрибут WebhookToken является опциональным.
+Атрибут WebhookToken является опциональным, ему можно не присваивать значение, однако он должен быть в `application.yml`.
+Если вы не хотите устанавливать пароль, вы можете просто оставить параметр webhookToken без значения.
 
 ```yaml
 green-api:
-  webhookToken: 1a2b3c4d5e
+  webhookToken:
 server:
   port: 8080
 ```

@@ -3,8 +3,9 @@ package com.greenapi.server.examples;
 import com.greenapi.client.pkg.api.webhook.WebhookHandler;
 import com.greenapi.client.pkg.models.notifications.Notification;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
-//@Component(value = "whatsappWebhookHandler")
+@Component(value = "whatsappWebhookHandler")
 class WebhookHandlerExample implements WebhookHandler {
     @SneakyThrows
     @Override
