@@ -128,6 +128,7 @@ public class WebhookHandlerExample implements WebhookHandler {
 }
 ```
 
+Webhook URL: `{{your host}}/green-api/async/webhook`  
 When a new notification is received, your `handle()` handler function will be executed asynchronously.
 We recommend processing notifications asynchronously, since they are configured to timeout when receive status code 200 too long time.
 After a timeout, the second attempt does not occur immediately, which can cause long processing of notifications and an increase in the message queue.
