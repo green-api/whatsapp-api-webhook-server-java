@@ -69,10 +69,11 @@ sudo ufw enable
 ### Импорт
 
 ```xml
+
 <dependency>
-  <groupId>com.green-api</groupId>
-  <artifactId>whatsapp-api-webhook-server-java</artifactId>
-  <version>{{version}}</version>
+    <groupId>com.green-api</groupId>
+    <artifactId>whatsapp-api-webhook-server-java</artifactId>
+    <version>{{version}}</version>
 </dependency>
 ```
 
@@ -81,7 +82,8 @@ sudo ufw enable
 #### Как инициализировать объект
 
 Установите параметры сервера в `application.yml`.
-Атрибут WebhookToken является опциональным, ему можно не присваивать значение, однако он должен быть в `application.yml`.
+Атрибут WebhookToken является опциональным, ему можно не присваивать значение, однако он должен быть
+в `application.yml`.
 Если вы не хотите устанавливать пароль, вы можете просто оставить параметр webhookToken без значения.
 
 ```yaml
@@ -93,11 +95,13 @@ server:
 
 #### Как запустить веб-сервер
 
-Приложения начнет слушать порт, сразу после запуска метода `main`, для этого не забудьте поставить аннотацию `@ComponentScan(basePackages = "com.greenapi.server")`.
+Приложения начнет слушать порт, сразу после запуска метода `main`, для этого не забудьте поставить
+аннотацию `@ComponentScan(basePackages = "com.greenapi.server")`.
 
 Ссылка на пример: [WhatsappApiServerExample.java](/com/greenapi/server/examples/WhatsappApiServerExample.java).
 
 ```java
+
 @SpringBootApplication
 @ComponentScan(basePackages = "com.greenapi.server")
 public class WhatsappApiServerExample {
@@ -113,9 +117,10 @@ public class WhatsappApiServerExample {
 Ссылка на пример: [WebhookHandlerExample.java](/com/greenapi/server/examples/WebhookHandlerExample.java).
 
 ```java
+
 @Component(value = "whatsappWebhookHandler")
 public class WebhookHandlerExample implements WebhookHandler {
-    
+
     @SneakyThrows
     @Override
     public void handle(Notification notification) {
@@ -128,8 +133,10 @@ public class WebhookHandlerExample implements WebhookHandler {
 
 Webhook URL: `{{your host}}/green-api/async/webhook`  
 При получении нового уведомления ваша функция-обработчик `handle()` будет выполнена асинхронно.
-Мы рекомендуем обрабатывать уведомления асинхронно, так как они настроены на таймаут при долгом получении статус кода 200. 
-После таймаута вторая попытка происходит не сразу, что может послужить причиной долгой обработки уведомлений и увеличения очереди сообщений.
+Мы рекомендуем обрабатывать уведомления асинхронно, так как они настроены на таймаут при долгом получении статус кода
+200.
+После таймаута вторая попытка происходит не сразу, что может послужить причиной долгой обработки уведомлений и
+увеличения очереди сообщений.
 
 ### Запуск приложения
 
