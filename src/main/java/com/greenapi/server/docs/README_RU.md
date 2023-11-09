@@ -133,10 +133,34 @@ public class WebhookHandlerExample implements WebhookHandler {
 
 Webhook URL: `{{your host}}/green-api/async/webhook`  
 При получении нового уведомления ваша функция-обработчик `handle()` будет выполнена асинхронно.
-Мы рекомендуем обрабатывать уведомления асинхронно, так как они настроены на таймаут при долгом получении статус кода
-200.
+Мы рекомендуем обрабатывать уведомления асинхронно, так как они настроены на таймаут при долгом получении статус кода 200.
 После таймаута вторая попытка происходит не сразу, что может послужить причиной долгой обработки уведомлений и
 увеличения очереди сообщений.
+
+Так как каждое уведомление автоматически кастится до java объекта, вы можете фильтровать уведомление по любому полю самостоятельно.
+С описанием структуры объектов уведомлений можно ознакомиться по этой ссылке: [Документация](https://green-api.com/docs/api/receiving/notifications-format/type-webhook/)
+Для удобства все типы хуков и сообщений названы аналогично документации:
+
+| Java объект                          | Webhook's json объект                                                                                                                                     |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `TextMessageWebhook`                 | [TextMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/TextMessage/)                                                |
+| `TemplateMessageWebhook`             | [TemplateMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/TemplateMessage/)                                        |
+| `StickerMessageWebhook`              | [StickerMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/StickerMessage/)                                          |
+| `ReactionMessageWebhook`             | [ReactionMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/ReactionMessage/)                                        |
+| `QuotedMessageWebhook`               | [QuotedMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/QuotedMessage/)                                            |
+| `PollUpdateMessageWebhook`           | [PollUpdateMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/PollUpdateMessage/)                                    |
+| `PollMessageWebhook`                 | [PollMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/PollMessage/)                                                |
+| `LocationMessageWebhook`             | [LocationMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/LocationMessage/)                                        |
+| `ListMessageWebhook`                 | [ListMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/ListMessage/)                                                |
+| `GroupInviteMessageWebhook`          | [GroupInviteMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/GroupInviteMessage/)                                  |
+| `FileMessageWebhook`                 | [imageMessage, videoMessage, documentMessage, audioMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/ImageMessage/) |
+| `ExtendedTextMessageWebhook`         | [ExtendedTextMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/ExtendedTextMessage/)                                |
+| `ButtonsMessageWebhook`              | [ButtonsMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/ButtonsMessage/)                                          |
+| `ContactMessageWebhook`              | [ContactMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/ContactMessage/)                                          |
+| `ContactsArrayMessageWebhook`        | [ContactMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/ContactsArrayMessage/)                                    |
+| `TemplateButtonsReplyMessageWebhook` | [TemplateButtonsReplyMessage](https://green-api.com/docs/api/receiving/notifications-format/selected-buttons/TemplateButtonsReplyMessage/)                |
+| `ButtonsResponseMessageWebhook`      | [ButtonsResponseMessage](https://green-api.com/docs/api/receiving/notifications-format/selected-buttons/ButtonsResponseMessage/)                          |
+| `ListResponseMessageWebhook`         | [ListResponseMessage](https://green-api.com/docs/api/receiving/notifications-format/selected-buttons/ListResponseMessage/)                                |
 
 ### Запуск приложения
 
