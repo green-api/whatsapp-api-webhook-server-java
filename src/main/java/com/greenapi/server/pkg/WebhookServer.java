@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("/green-api")
+@RequestMapping("/whatsapp")
 @RequiredArgsConstructor
 @Log4j2
 public class WebhookServer {
@@ -30,6 +30,20 @@ public class WebhookServer {
             Objects.equals(webhookToken, "")) {
 
             CompletableFuture.runAsync(() -> whatsappWebhookHandler.handle(notificationMapper.get(jsonString)));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/webhook")
+    public ResponseEntity<Void> receiveWebhook(@RequestBody String jsonString,
+                                               @RequestHeader(required = false) String Authorization) {
+        if ((Authorization != null && Authorization.replaceAll("Bearer ", "").equals(webhookToken)) ||
+            Objects.equals(webhookToken, "")) {
+
+            whatsappWebhookHandler.handle(notificationMapper.get(jsonString));
+
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

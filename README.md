@@ -69,17 +69,25 @@ sudo ufw enable
 
 ### Import
 
+Install the library into your server project. The library is available in the Maven central repository.
+
+Maven
 ```xml
 <dependency>
-  <groupId>com.green-api</groupId>
-  <artifactId>whatsapp-api-webhook-server-java</artifactId>
-  <version>{{version}}</version>
+     <groupId>com.green-api</groupId>
+     <artifactId>whatsapp-api-webhook-server-java</artifactId>
+     <version>{{version}}</version>
 </dependency>
+```
+
+Gradle
+```yaml
+implementation group: 'com.green-api', name: 'whatsapp-api-client-java', version: 'version'
 ```
 
 ### Examples
 
-#### How to initialize an object
+#### How to run the web server
 
 Set server options in `application.yml`.
 The WebhookToken attribute is optional and does not need to be assigned a value, but it must be in `application.yml`.
@@ -91,8 +99,6 @@ green-api:
 server:
   port: 8080
 ```
-
-#### How to run the web server
 
 Applications will start listening the port immediately after running the `main` method; 
 for this, do not forget to add the `@ComponentScan(basePackages = "com.greenapi.server")` annotation.
@@ -109,7 +115,7 @@ public class WhatsappApiServerExample {
 }
 ```
 
-The handler function class must implement the `WebhookHandler` interface and be a bean.
+The handler function class must implement the `WebhookHandler` interface and be a bean named `whatsappWebhookHandler`.
 To do this, set the `@Component(value = "whatsappWebhookHandler")` annotation on the handler function class.
 
 Link to example: [WebhookHandlerExample.java](src/main/java/com/greenapi/server/examples/WebhookHandlerExample.java).
@@ -128,10 +134,11 @@ public class WebhookHandlerExample implements WebhookHandler {
 }
 ```
 
-Webhook URL: `{{your host}}/green-api/async/webhook`  
-When a new notification is received, your `handle()` handler function will be executed asynchronously.
-We recommend processing notifications asynchronously, since they are configured to timeout when receive status code 200 too long time.
-After a timeout, the second attempt does not occur immediately, which can cause long processing of notifications and an increase in the message queue.
+Webhook URL: `{{your host}}/whatsapp/async/webhook`
+If you want your `handle()` handler function to be executed asynchronously.
+
+Webhook URL: `{{your host}}/whatsapp/webhook`
+If you want your `handle()` handler function to be called for each webhook sequentially in one thread.
 
 Since each notification is automatically cast to a java object, you can filter the notification by any field yourself.
 A description of the structure of notification objects can be found at this link: [Documentation](https://green-api.com/docs/api/receiving/notifications-format/type-webhook/)

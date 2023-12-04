@@ -68,13 +68,20 @@ sudo ufw enable
 
 ### Импорт
 
-```xml
+Установите библиотеку в проект своего сервера. Библиотека доступна в центральном репозитории Maven.
 
+Maven
+```xml
 <dependency>
     <groupId>com.green-api</groupId>
     <artifactId>whatsapp-api-webhook-server-java</artifactId>
     <version>{{version}}</version>
 </dependency>
+```
+
+Gradle
+```yaml
+implementation group: 'com.green-api', name: 'whatsapp-api-client-java', version: 'version'
 ```
 
 ### Примеры
@@ -93,15 +100,12 @@ server:
   port: 8080
 ```
 
-#### Как запустить веб-сервер
-
 Приложения начнет слушать порт, сразу после запуска метода `main`, для этого не забудьте поставить
-аннотацию `@ComponentScan(basePackages = "com.greenapi.server")`.
+аннотацию `@ComponentScan(basePackages = "com.greenapi.server")`, чтобы в вашем проекте были доступны все стандартные бины библиотеки.
 
 Ссылка на пример: [WhatsappApiServerExample.java](/com/greenapi/server/examples/WhatsappApiServerExample.java).
 
 ```java
-
 @SpringBootApplication
 @ComponentScan(basePackages = "com.greenapi.server")
 public class WhatsappApiServerExample {
@@ -111,13 +115,12 @@ public class WhatsappApiServerExample {
 }
 ```
 
-Класс функции-обработчика должен имплементировать интерфейс `WebhookHandler` и быть бином.
+Класс функции-обработчика должен имплементировать интерфейс `WebhookHandler` и быть бином с именем `whatsappWebhookHandler`.
 Для этого установите аннотацию `@Component(value = "whatsappWebhookHandler")` над классом функции-обработчика.
 
 Ссылка на пример: [WebhookHandlerExample.java](/com/greenapi/server/examples/WebhookHandlerExample.java).
 
 ```java
-
 @Component(value = "whatsappWebhookHandler")
 public class WebhookHandlerExample implements WebhookHandler {
 
@@ -131,11 +134,11 @@ public class WebhookHandlerExample implements WebhookHandler {
 }
 ```
 
-Webhook URL: `{{your host}}/green-api/async/webhook`  
-При получении нового уведомления ваша функция-обработчик `handle()` будет выполнена асинхронно.
-Мы рекомендуем обрабатывать уведомления асинхронно, так как они настроены на таймаут при долгом получении статус кода 200.
-После таймаута вторая попытка происходит не сразу, что может послужить причиной долгой обработки уведомлений и
-увеличения очереди сообщений.
+Webhook URL: `{{your host}}/green-api/async/webhook`
+Если вы хотите чтобы ваша функция-обработчик `handle()` будет выполнена асинхронно.
+
+Webhook URL: `{{your host}}/green-api/webhook`
+Если вы хотите чтобы ваша функция-обработчик `handle()` вызывалась для каждого вебхука последовательно в одном потоке.
 
 Так как каждое уведомление автоматически кастится до java объекта, вы можете фильтровать уведомление по любому полю самостоятельно.
 С описанием структуры объектов уведомлений можно ознакомиться по этой ссылке: [Документация](https://green-api.com/docs/api/receiving/notifications-format/type-webhook/)
