@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.green-api</groupId>
     <artifactId>whatsapp-api-webhook-server-java</artifactId>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
     <name>whatsapp-api-webhook-server-java</name>
     <description>whatsapp-api-webhook-server-java</description>
     <licenses>
