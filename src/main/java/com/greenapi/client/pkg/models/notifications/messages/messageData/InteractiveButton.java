@@ -1,0 +1,21 @@
+package com.greenapi.client.pkg.models.notifications.messages.messageData;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class InteractiveButton {
+    private String type;
+    private String buttonId;
+    private String buttonText;
+    private String copyCode;
+    private String phoneNumber;
+    private String url;
+}

@@ -164,6 +164,12 @@ Webhook URL: `{{your host}}/green-api/webhook`
 | `TemplateButtonsReplyMessageWebhook` | [TemplateButtonsReplyMessage](https://green-api.com/docs/api/receiving/notifications-format/selected-buttons/TemplateButtonsReplyMessage/)                |
 | `ButtonsResponseMessageWebhook`      | [ButtonsResponseMessage](https://green-api.com/docs/api/receiving/notifications-format/selected-buttons/ButtonsResponseMessage/)                          |
 | `ListResponseMessageWebhook`         | [ListResponseMessage](https://green-api.com/docs/api/receiving/notifications-format/selected-buttons/ListResponseMessage/)                                |
+| `EditedMessageWebhook`               | [EditedMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/EditedMessage/)                                            |
+| `DeletedMessageWebhook`              | [DeletedMessage](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/DeletedMessage/)                                          |
+| `InteractiveButtonsMessageWebhook`   | [InteractiveButtons](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/InteractiveButtons/)                                  |
+| `InteractiveButtonsReplyMessageWebhook` | [InteractiveButtonsReply](https://green-api.com/docs/api/receiving/notifications-format/incoming-message/InteractiveButtonsReply/)                    |
+| `OutgoingCall`                       | [OutgoingCall](https://green-api.com/docs/api/receiving/notifications-format/OutgoingCall/)                                                               |
+| `QuotaExceeded`                      | [QuotaExceeded](https://green-api.com/docs/api/receiving/notifications-format/QuotaExceeded/)                                                             |
 
 ### Запуск приложения
 
