@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.green-api</groupId>
     <artifactId>whatsapp-api-webhook-server-java</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.8</version>
     <name>whatsapp-api-webhook-server-java</name>
     <description>whatsapp-api-webhook-server-java</description>
     <licenses>
@@ -37,12 +37,12 @@
         <whatsapp-api-client-java.version>0.1.8</whatsapp-api-client-java.version>
         <snakeyaml.version>2.2</snakeyaml.version>
     </properties>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org</url>
-        </snapshotRepository>
-    </distributionManagement>
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>ossrh</id>-->
+<!--            <url>https://s01.oss.sonatype.org</url>-->
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -63,6 +63,15 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
