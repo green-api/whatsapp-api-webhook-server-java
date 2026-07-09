@@ -2,13 +2,14 @@ package com.greenapi.server.examples;
 
 import com.greenapi.client.pkg.api.webhook.WebhookHandler;
 import com.greenapi.client.pkg.models.notifications.*;
+import org.springframework.stereotype.Component;
 import com.greenapi.client.pkg.models.notifications.messages.EditedMessage;
 import com.greenapi.client.pkg.models.notifications.messages.InteractiveButtonsMessage;
 import com.greenapi.client.pkg.models.notifications.messages.InteractiveButtonsReplyMessage;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
-//@Component(value = "whatsappWebhookHandler")
+@Component(value = "whatsappWebhookHandler")
 @Log4j2
 class WebhookHandlerExample implements WebhookHandler {
 
